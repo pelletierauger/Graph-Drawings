@@ -28,6 +28,7 @@ let ansiChars = "";
 let noPainting = true;
 let batchExport = false;
 let closestVertex = null;
+let freezeInc = 1;
 
 let vertex_buffer, indices2_buffer, Index_Buffer, color_buffer, width_buffer, uv_buffer;
 let dots_buffer, selected_dots_buffer;
@@ -214,7 +215,7 @@ function setup() {
     // stroke(0);
     // noStroke();
     // g = new Graph();
-    makeGraphFromRawGraph(rawGraph);
+    makeGraphFromRawGraph3D(rawGraph3D);
     if (!looping) {
         noLoop();
     }
@@ -353,7 +354,7 @@ draw = function() {
         gl.useProgram(currentProgram);
         drawTerminal(currentProgram);
     }
-    drawCount++;
+    drawCount += 0.5 * freezeInc;
     if (exporting && frameCount < maxFrames) {
         // frameExport();
     }

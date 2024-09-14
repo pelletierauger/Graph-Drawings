@@ -1,5 +1,5 @@
-let Vertex = function(x, y, g) {
-    this.pos = { x: x, y: y };
+let Vertex = function(x, y, z, g) {
+    this.pos = { x: x, y: y, z: z };
     this.edges = [];
     this.selected = false;
     g.push(this);
@@ -20,9 +20,9 @@ let Vertex = function(x, y, g) {
 };
 
 Vertex.prototype.show = function() {
-    vertices.push(this.pos.x, this.pos.y, 1, 1);
+    vertices.push(this.pos.x, this.pos.y, this.pos.z, 1);
     if (this.selected) {
-        selectedVertices.push(this.pos.x, this.pos.y, 1, 1);
+        selectedVertices.push(this.pos.x, this.pos.y, this.pos.z, 1);
     }
 };
 
