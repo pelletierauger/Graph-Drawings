@@ -12,6 +12,19 @@ Graph.prototype.show = function() {
     }
 };
 
+if (false) {
+
+Graph.prototype.show = function() {
+    for (let i = 0; i < this.edges.length; i++) {
+        this.edges[i].show();
+    }
+    // for (let i = 0; i < this.vertices.length; i++) {
+    //     this.vertices[i].show();
+    // }
+};
+
+}
+
 Graph.prototype.move = function() {
     let d = 60;
     for (let i = 0; i < this.vertices.length; i++) {
@@ -37,7 +50,7 @@ Graph.prototype.move = function() {
 };
 
 Graph.prototype.createEdge = function(a, b) {
-    let e = new Edge(a, b);
+    let e = new Edge(a, b, this);
     a.addEdge(e);
     b.addEdge(e);
     this.edges.push(e);

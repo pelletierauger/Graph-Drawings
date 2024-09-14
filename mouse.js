@@ -257,7 +257,7 @@ makeGraphFromRawGraph = function(r) {
 makeGraphFromRawGraph3D = function(r) {
     g = new Graph();
     for (let i = 0; i < r[0].length; i++) {
-        let v = new Vertex(r[0][i][0], r[0][i][1], r[0][i][2], g.vertices);
+        let v = new Vertex(r[0][i][0], r[0][i][1], r[0][i][2], g);
     }
     for (let i = 0; i < r[1].length; i++) {
         g.createEdge(g.vertices[r[1][i][0]], g.vertices[r[1][i][1]]);
