@@ -346,7 +346,7 @@ draw = function() {
     }
     currentProgram = getProgram("selected-dots");
     gl.useProgram(currentProgram);
-    drawSelectedDots(currentProgram);
+    // drawSelectedDots(currentProgram);
     if (mode !== 3) {
         currentProgram = getProgram("rounded-square");
         time = gl.getUniformLocation(currentProgram, "time"); 
