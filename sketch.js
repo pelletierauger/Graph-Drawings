@@ -315,10 +315,12 @@ draw = function() {
     reset3DLines();
     vertices = [];
     selectedVertices = [];
+    if (!hideSelections) {
         let w = 16/9;
-            let x = map(mouse.x, 0, 1280, -w, w);
+        let x = map(mouse.x, 0, 1280, -w, w);
         let y = map(mouse.y, 760, 40, -1, 1);
-    vertices.push(x, y, 1, 1);
+        vertices.push(x, y, 1, 1);
+    }
     // g.move();
     g.show();
     // add3DLine(
@@ -343,9 +345,11 @@ draw = function() {
     if (closestVertex) {
         selectedVertices.push(closestVertex.pos.x, closestVertex.pos.y, 1, 1);
     }
-    currentProgram = getProgram("selected-dots");
-    gl.useProgram(currentProgram);
-    drawSelectedDots(currentProgram);
+    if (!hideSelections) {
+        currentProgram = getProgram("selected-dots");
+        gl.useProgram(currentProgram);
+        drawSelectedDots(currentProgram);
+    }
     if (mode !== 3) {
         currentProgram = getProgram("rounded-square");
         time = gl.getUniformLocation(currentProgram, "time"); 
