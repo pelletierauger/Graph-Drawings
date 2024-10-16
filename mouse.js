@@ -106,6 +106,17 @@ createEdgeBetweenSelectedAndClosestVertices = function() {
 edgeSC = createEdgeBetweenSelectedAndClosestVertices;
 selC = selectClosestVertex;
 
+createEdgeBetweenSelectedAndClosestVerticesThenSelectClosest = function() {
+    if (closestVertex) {
+        for (let i = 0; i < g.vertices.length; i++) {
+            if (g.vertices[i].selected &&  (g.vertices[i] !== closestVertex)) {
+                g.createEdge(g.vertices[i], closestVertex);
+                g.vertices[i].selected = false;
+                closestVertex.selected = true;
+            };
+        }
+    }
+};
 
 printRawGraph = function() {
     let v = "[[\n";
@@ -1107,17 +1118,19 @@ flipVertices = function() {
 };
 
 
+hideSelections = false;
 
 graphDrawingKeys = function(e) {
     let s = e.key;
+    let moveSize = (e.shiftKey) ? 0.001 : 0.01;
     if (s == "ArrowDown") {
-        moveVertex(0, -0.01);
+        moveVertex(0, -moveSize);
     } else if (s == "ArrowUp") {
-        moveVertex(0, 0.01);
+        moveVertex(0, moveSize);
     } else if (s == "ArrowLeft") {
-        moveVertex(-0.01, 0);
+        moveVertex(-moveSize, 0);
     } else if (s == "ArrowRight") {
-        moveVertex(0.01, 0);
+        moveVertex(moveSize, 0);
     } else if (s == "s") {
         selC();
     } else if (s == "a") {
@@ -1130,6 +1143,10 @@ graphDrawingKeys = function(e) {
         delEdge();
     } else if (s == "f") {
         flipVertices();
+    } else if (s == "l") {
+        createEdgeBetweenSelectedAndClosestVerticesThenSelectClosest();
+    } else if (s == "h") {
+        hideSelections = !hideSelections;
     }
     // console.log(s);
 };
